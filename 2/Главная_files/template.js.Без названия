@@ -1,0 +1,25 @@
+/**
+ * @package     Joomla.Site
+ * @subpackage  Templates.elitegroup
+ * @copyright   Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @since       3.2
+ */
+
+(function($)
+{
+	$(document).ready(function()
+	{
+		var top_pos = $("#fixed-left").parent().offset().top;
+		var delay = 0;
+		$(window).scroll(function () {
+			if ($(this).scrollTop() +15 > top_pos){
+				$("#fixed-left").parent().stop();
+				$("#fixed-left").parent().animate({"top":($(this).scrollTop() - top_pos +15) + "px"}, delay);
+			} else{
+				$("#fixed-left").parent().stop();
+				$("#fixed-left").parent().animate({top:0 + "px"}, delay);
+			}
+		});
+	})
+})(jQuery);
