@@ -27,16 +27,17 @@ $categories = getCategories();
     <meta name="description" content="харьков, расходные материалы для салонов красоты, центр обеспечения салонов" />
     <link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-    <link rel="stylesheet" type="text/css" href="css/remodal.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link type='text/css' rel='stylesheet' href='css/liquidcarousel.css' />
-
     <link href="images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
-
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/sp.js"></script>
-    <script type="text/javascript" src="js/remodal.js"></script>
-    <script type="text/javascript" src="js/jquery.liquidcarousel.min.js"></script>
+<!--    <script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/ddsmoothmenu.js">
+         /***********************************************
+        * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+        * This notice MUST stay intact for legal use
+        * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+        ***********************************************/
+    </script>
 
     <script type="text/javascript">
         var categories = [];
@@ -50,28 +51,31 @@ $categories = getCategories();
         jQuery(document).ready(function( $ ) {
             //changeContent(categories[0].id);
             applyLanguage();
-            getProductsForCategory('<?php echo $categories[0] -> properties -> sheetId; ?>');
-            modalInit();
             initSlider();
+            getProductsForCategory('<?php echo $categories[0] -> properties -> sheetId; ?>');
             //refreshElements();
         });
-//        ddsmoothmenu.init({
-//            mainmenuid: "templatemo_menu", //menu DIV id
-//            orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-//            classname: 'ddsmoothmenu', //class added to menu's outer DIV
-//            //customtheme: ["#1c5a80", "#18374a"],
-//            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-//        })
+        ddsmoothmenu.init({
+            mainmenuid: "templatemo_menu", //menu DIV id
+            orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+            classname: 'ddsmoothmenu', //class added to menu's outer DIV
+            //customtheme: ["#1c5a80", "#18374a"],
+            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+        })
     </script>
-
+    <script language="javascript" type="text/javascript" src="js/mootools-1.2.1-core.js"></script>
+    <script language="javascript" type="text/javascript" src="js/mootools-1.2-more.js"></script>
+    <script language="javascript" type="text/javascript" src="js/slideitmoo-1.1.js"></script>
+    <script language="javascript" type="text/javascript" src="js/sp.js"></script>
     <script language="javascript" type="text/javascript">
+
+
         function clearText(field) {
             if (field.defaultValue == field.value) field.value = '';
             else if (field.value == '') field.value = field.defaultValue;
         }
     </script>
 </head>
-
 
 <body id="home">
 
@@ -121,15 +125,7 @@ $categories = getCategories();
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
-    <div id="scrollable" class="liquid">
-        <span class="previous"></span>
-        <div class="wrapper">
-            <ul id="liSliderContent">
-            </ul>
-        </div>
-        <span class="next"></span>
-    </div>
-
+    
     <!--<div id="templatemo_middle">-->
     	<!--<img src="images/templatemo_image_01.png" alt="Image 01" />-->
     	<!--<h1>Introducing Web Store</h1>-->
@@ -139,7 +135,20 @@ $categories = getCategories();
     
     <div id="templatemo_main_top"></div>
     <div id="templatemo_main">
-
+    	<div id="product_slider">
+    		<div id="SlideItMoo_outer">	
+                <div id="SlideItMoo_inner">			
+                    <div id="SlideItMoo_items">
+<!--                        <div class="SlideItMoo_element">-->
+<!--                                <a href="http://www.templatemo.com/page/1" target="_parent">-->
+<!--                                <img src="images/gallery/01.jpg" alt="product 1" /></a>-->
+<!--                        </div>	-->
+                    </div>
+                </div>
+            </div>
+            <div class="cleaner"></div>
+        </div>
+        
         <div id="sidebar">
         	<h3 id="catTitle">Categories</h3>
             <ul class="sidebar_menu">
@@ -150,7 +159,21 @@ $categories = getCategories();
                             <?php echo $category -> properties -> title; ?></a>
                     </li>
                 <?php endforeach; ?>
-
+<!---->
+<!--			    <li><a id="hairdresser" class="categoryLink" onclick="javascript:changeContent(categories[0].id)">Aenean et dolor diam</a></li>-->
+<!--                <li><a id="napkinsTowels" class="categoryLink" onclick="javascript:changeContent(categories[1].id)">Aenean pulvinar</a></li>-->
+<!--            	<li><a class="categoryLink" onclick="javascript:changeContent(categories[2].id)">Etiam in tellus</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[3].id)">Hendrerit justo</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[4].id)">Integer interdum</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[5].id)">Maecenas a diam</a></li>-->
+<!--				<li><a class="categoryLink" onclick="javascript:changeContent(categories[6].id)">Nullam in semper</a></li>-->
+<!--				<li><a class="categoryLink" onclick="javascript:changeContent(categories[7].id)">Posuere in commodo</a></li>-->
+<!--				<li><a class="categoryLink" onclick="javascript:changeContent(categories[8].id)">Tincidunt leo</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[9].id)">Vestibulum blandit</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[10].id)">Vestibulum blandit</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[11].id)">Vestibulum blandit</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[12].id)">Vestibulum blandit</a></li>-->
+<!--                <li><a class="categoryLink" onclick="javascript:changeContent(categories[13].id)">Vestibulum blandit</a></li>-->
 			</ul>
             <h3>Newsletter</h3>
             <p>Praesent aliquam mi id tellus pretium pulvinar in vel ligula.</p>
@@ -221,19 +244,8 @@ $categories = getCategories();
 			Copyright © 2048 Your Company Name | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
 		</center>
     </div> <!-- END of footer -->   
+   
 </div>
-
-<div id="modalMain" data-remodal-id="modal" role="dialog">
-    <button data-remodal-action="close" class="remodal-close" aria-label="Close">
-        <svg class="" viewBox="0 0 24 24">
-            <path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path>
-            <path d="M0 0h24v24h-24z" fill="none"></path>
-        </svg>
-    </button>
-    <div id="productDetailsTitle" class="productDetailsTitle">Failed rows description</div>
-    <div id="modal-content"></div>
-</div>
-
 
 </body>
 </html>

@@ -22,21 +22,6 @@ function getCategories() {
     //echo json_encode($sheets);
     return $sheets;
 }
-
-function getProduct($spreadsheetId, $categoryId, $rowId) {
-    $API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
-    $APP_NAME = 'SalonPlusSite';
-
-    $client = new Google_Client();
-    $client->setApplicationName($APP_NAME);
-    $client->setDeveloperKey($API_KEY);
-    $service = new Google_Service_Sheets($client);
-
-    $range = 'test!B1:B5';
-    $optParams['includeGridData'] = false;
-    $response = $service->spreadsheets->get($spreadsheetId, $optParams);
-}
-
 //    $client = new Google_Client();
 //    $client->setAuthConfig('google-api-php-client/client_secret.json');
 //    $client->setAccessType("offline");        // offline access
@@ -69,5 +54,4 @@ function getProduct($spreadsheetId, $categoryId, $rowId) {
 //
 //    error_log('-------------token:');
 //    error_log($token);
-    getCategories();
 ?>
