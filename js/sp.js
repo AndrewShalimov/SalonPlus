@@ -9,9 +9,45 @@ var lang = [
     {id: "napkinsTowels", val: "\u0421\u0430\u043b\u0444\u0435\u0442\u043a\u0438\u002c\u043f\u043e\u043b\u043e\u0442\u0435\u043d\u0446\u0430"},
     {id: "siteTitle", val: "\u0420\u0430\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b \u0434\u043b\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432 \u043a\u0440\u0430\u0441\u043e\u0442\u044b"},
     {id: "meta_1", val: "\u006b\u0068\u0061\u0072\u006b\u0069\u0076\u002c \u0077\u0065\u0062 \u0073\u0074\u006f\u0072\u0065\u002c \u006d\u0061\u006b\u0065\u0075\u0070\u002c \u006d\u0061\u0071\u0075\u0069\u006c\u006c\u0061\u0067\u0065 \u0445\u0430\u0440\u044c\u043a\u043e\u0432\u002c \u0440\u0430\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b \u0434\u043b\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432 \u043a\u0440\u0430\u0441\u043e\u0442\u044b\u002c \u0446\u0435\u043d\u0442\u0440 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432"},
-    {id: "meta_2", val: "\u0445\u0430\u0440\u044c\u043a\u043e\u0432\u002c \u0440\u0430\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b \u0434\u043b\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432 \u043a\u0440\u0430\u0441\u043e\u0442\u044b\u002c \u0446\u0435\u043d\u0442\u0440 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432"}
+    {id: "meta_2", val: "\u0445\u0430\u0440\u044c\u043a\u043e\u0432\u002c \u0440\u0430\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b \u0434\u043b\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432 \u043a\u0440\u0430\u0441\u043e\u0442\u044b\u002c \u0446\u0435\u043d\u0442\u0440 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0430\u043b\u043e\u043d\u043e\u0432"},
+    {id: "contacts", val: "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b"},
+    {id: "contactsInfo", val: "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b"},
+    {id: "postAddress", val: "\u041f\u043e\u0447\u0442\u043e\u0432\u044b\u0439 \u0430\u0434\u0440\u0435\u0441"},
+    {id: "info_0", val: "\u0421\u0434\u0435\u043b\u0430\u0442\u044c \u0437\u0430\u043a\u0430\u0437\u002c \u043e\u0444\u043e\u0440\u043c\u0438\u0442\u044c \u043a\u0443\u0440\u044c\u0435\u0440\u0441\u043a\u0443\u044e \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0443\u002c\n" +
+    "                \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044e \u043f\u043e \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u0443\u044e\u0449\u0435\u0439 \u0412\u0430\u0441 \u043f\u0440\u043e\u0434\u0443\u043a\u0446\u0438\u0438\u002c\n" +
+    "                \u0437\u0430\u0434\u0430\u0442\u044c \u0432\u043e\u043f\u0440\u043e\u0441\u044b\u002c \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0435 \u0441 \u043e\u0444\u043e\u0440\u043c\u043b\u0435\u043d\u0438\u0435\u043c \u0437\u0430\u043a\u0430\u0437\u0430\u002c\n" +
+    "                \u043e\u043f\u043b\u0430\u0442\u043e\u0439 \u0438 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u043e\u0439\u002c \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430\u043c\u003a"},
+    {id: "info_1", val: "\u0412\u0441\u0435 \u0442\u043e\u0432\u0430\u0440\u044b \u043f\u0440\u043e\u0434\u0430\u044e\u0442\u0441\u044f \u0441 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u043e\u0439 \u043f\u043e \u0425\u0430\u0440\u044c\u043a\u043e\u0432\u0443 \u0438 \u043f\u043e \u0432\u0441\u0435\u0439 \u0423\u043a\u0440\u0430\u0438\u043d\u0435 \u0441\u043b\u0443\u0436\u0431\u0430\u043c\u0438 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438 \n" +
+    "\u0022\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u0447\u0442\u0430\u0022 \u0438\u043b\u0438 \u0022\u0418\u043d\u002d\u0442\u0430\u0439\u043c\u0022\u002e\u003c\u0062\u0072\u003e \n" +
+    "\u0414\u043b\u044f \u0436\u0438\u0442\u0435\u043b\u0435\u0439 \u0438 \u0433\u043e\u0441\u0442\u0435\u0439 \u0433\u002e \u0425\u0430\u0440\u044c\u043a\u043e\u0432\u0430 \u0435\u0441\u0442\u044c \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0441\u0430\u043c\u043e\u0432\u044b\u0432\u043e\u0437\u0430\u002e"},
+    {id: "info_2", val: "\u0423\u043b\u002e \u041a\u043e\u0441\u0442\u043e\u043c\u0430\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u0035\u002f\u0037\u003c\u0062\u0072 \u002f\u003e\n" +
+    "            \u0417\u0430\u0435\u0437\u0434 \u0441 \u041c\u0438\u0440\u043e\u043d\u043e\u0441\u0438\u0446\u043a\u043e\u0439 \u0438\u043b\u0438 \u0441 \u0427\u0435\u0440\u043d\u044b\u0448\u0435\u0432\u0441\u043a\u043e\u0433\u043e \u0432 \u0430\u0440\u043a\u0443\u002e\u003c\u0062\u0072 \u002f\u003e"},
+    {id: "homeTitle", val: "\u0414\u043e\u043c\u043e\u0439"},
+    {id: "productsTitle", val: "\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u044b"},
+    {id: "aboutTitle", val: "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"},
+    {id: "helpTitle", val: "\u041f\u043e\u043c\u043e\u0449\u044c"},
+    {id: "exitTitle", val: "\u0412\u044b\u0445\u043e\u0434"},
+    {id: "info_3", val: "\u003c\u0062\u0072\u003e\u003c\u0062\u0072\u003e\n" +
+    "\u0413\u0440\u0430\u0444\u0438\u043a \u0440\u0430\u0431\u043e\u0442\u044b \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442\u002d\u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430\u003a\u003c\u0062\u0072\u003e\n" +
+    "\u041f\u043d\u002e\u002d\u0421\u0431\u002e\u003a  \u0441 \u0031\u0030\u002e\u0030\u0030 \u0434\u043e \u0031\u0038\u002e\u0030\u0030\u003c\u0062\u0072\u003e\n" +
+    "\u0412\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435 \u002d \u0432\u044b\u0445\u043e\u0434\u043d\u043e\u0439\u003c\u0062\u0072\u003e"}
 ];
 
+
+
+function showProducts() {
+    $("#content").empty();
+    getProductsForCategory(categories[0].id);
+}
+
+function showAbout() {
+}
+
+function showHelp() {
+}
+
+function goExit() {
+}
 
 function applyLanguage() {
     for (var i = 0; i < lang.length; i++) {
@@ -21,26 +57,36 @@ function applyLanguage() {
             element.html(item.val);
         }
     }
+    refreshElements();
 }
 
 function changeContent(categoryId) {
     var url;
     var title;
     var price;
-    jQuery("#content").empty();
+    $("#content").empty();
     getProductsForCategory(categoryId);
+}
+
+
+function goHome() {
+
+}
+
+function showContacts() {
+    $("#content").empty();
+    var contactsContant = $("#contactsContent").html();
+    $("#content").append(contactsContant);
 }
 
 var categoryContent = {};
 
 function setCategoryContent(content) {
-    //var categoryName = Object.keys(content)[0];
-    //var categoryContent = Object.values(content)[0];
     categoryContent = {};
     categoryContent = JSON.parse(JSON.stringify(content));
     for(var i = 0; i < content.length; i++) {
         var obj = content[i];
-        jQuery("#content").append("<div class='col col_14 product_gallery'>" +
+        $("#content").append("<div class='col col_14 product_gallery'>" +
         "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); showProductDetails(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.image_name + "' /></a>" +
         //"<img class='thumbImage' src='" + thumbPath + obj.image_name + "' />" +
         "<div class='productTitle'>" + obj.title + "</div>" +
@@ -54,6 +100,9 @@ function showProductDetails(rowId) {
     var details = categoryContent[rowId].description;
     var imageLink = productsPath + categoryContent[rowId].image_name;
     $("#productDetailsTitle").html(categoryContent[rowId].title);
+    var grn = $.grep(lang, function(e){ return e.id == 'grn'; })[0].val;
+    $("#productDetailsPrice").html(categoryContent[rowId].price + '&nbsp' + grn + '.');
+
     $("#productDetails_" + rowId).data("text", details);
     //details = '<div>' + details.replace('. ', '<br>').replace('\n', '<br>') + '</div>';
     details = "<div class='productDetailsText'>" + details + "</div>";
@@ -69,51 +118,13 @@ function initSlider() {
     $("#liSliderContent").empty();
      var catIndex = getRandomInt(0, categories.length - 1);
      getProductsForCategory(categories[catIndex].id, setSliderContent);
-    // console.log("----------------------- catIndex:" + catIndex);
-    // //getProductsForCategory(categories[0].id, setSliderContent);
-
-
-//     $(".items img").click(function() {
-//         // see if same thumb is being clicked
-//         if ($(this).hasClass("active")) { return; }
-//
-//         // calclulate large image's URL based on the thumbnail URL (flickr specific)
-//         var url = $(this).attr("src").replace("_t", "");
-//
-//         // get handle to element that wraps the image and make it semi-transparent
-//         var wrap = $("#image_wrap").fadeTo("medium", 0.5);
-//
-//         // the large image from www.flickr.com
-//         var img = new Image();
-//
-//
-//         // call this function after it's loaded
-//         img.onload = function() {
-//
-//             // make wrapper fully visible
-//             wrap.fadeTo("fast", 1);
-//
-//             // change the image
-//             wrap.find("img").attr("src", url);
-//
-//         };
-//
-//         // begin loading the image from www.flickr.com
-//         img.src = url;
-//
-//         // activate item
-//         $(".items img").removeClass("active");
-//         $(this).addClass("active");
-//
-// // when page loads simulate a "click" on the first image
-//     }).filter(":first").click();
 }
 
 function setSliderContent(content) {
     for(var i = 0; i < content.length; i++) {
         var obj = content[i];
         $("#liSliderContent").append("<li><div class='SlideItMoo_element'>" +
-        "<a href='#' title=' " + obj.title + "'><img class='sliderImage'  title='" + obj.title + "' src='" + thumbPath + obj.image_name + "' border='0'/></a>" +
+        "<a href='#' class='categoryLink' title=' " + obj.title + "'><img class='sliderImage'  title='" + obj.title + "' src='" + thumbPath + obj.image_name + "' border='0'/></a>" +
         "</div></li>");
     }
     $('#scrollable').liquidcarousel({
@@ -122,31 +133,13 @@ function setSliderContent(content) {
             hidearrows: false
         }
     );
-    //initSliderEvents();
-}
+ }
 
 function refreshElements() {
-    jQuery("#siteLogo").addClass("hidden");
-    jQuery("#siteLogo").css({ 'height': '25%' });
-    jQuery("#siteLogo").removeClass("hidden");
-}
-
-function initSliderEvents() {
-    window.addEvents({
-        'domready': function(){
-            /* thumbnails example , div containers */
-            new SlideItMoo({
-                overallContainer: 'SlideItMoo_outer',
-                elementScrolled: 'SlideItMoo_inner',
-                thumbsContainer: 'SlideItMoo_items',
-                itemsVisible: 5,
-                elemsSlide: 2,
-                duration: 200,
-                itemsSelector: '.SlideItMoo_element',
-                itemWidth: 171,
-                showControls:1});
-        }
-    });
+    $("#siteLogo").addClass("hidden");
+    $("#siteLogo").css({ 'height': '25%' });
+    $("#siteLogo").removeClass("hidden");
+    $("#siteLogo").css({ 'height': '26%' });
 }
 
 
@@ -155,7 +148,7 @@ function getRandomInt(min, max) {
 }
 
 function getProductsForCategory(categoryId, callback) {
-    jQuery.ajax({
+    $.ajax({
         url: "getProducts.php",
         type: "GET",
         data: {

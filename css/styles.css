@@ -82,14 +82,23 @@
 }
 
 .fullImage {
-    max-width: 95%;
+    max-width: 100%;
     max-height: 30%;
 }
 
 .productDetailsText {
-    width: 800px;
+    width: 100%;
     white-space: pre-line;
+    word-break: break-word;
     word-break: break-all;
+}
+
+.titlePrice {
+    font-weight: bold;
+    font-size: larger;
+    margin-left: 30px;
+    float: left;
+    color: #de6e6e;
 }
 
 .sliderImage {
@@ -105,6 +114,7 @@
 .productDetailsTitle {
     font-weight: bold;
     font-size: larger;
+    float:left;
 }
 
 .productTitle {
