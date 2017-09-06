@@ -3,20 +3,16 @@
 
 <?php
 // I18N support information here
-
 include_once('g_API.php');
-
 $language = 'en';
 putenv("LANG=$language");
 setlocale(LC_ALL, $language);
-
 // Set the text domain as 'messages'
 $domain = 'messages';
 bindtextdomain($domain, "/www/htdocs/site.com/locale");
 textdomain($domain);
 //echo gettext("A string to be translated would go here");
-
-$categories = getCategories();
+$categories = getCategories_cached();
 ?>
 
 
@@ -45,12 +41,11 @@ $categories = getCategories();
             this.title = title;
         }
         <?php foreach($categories as $category): ?>
-            categories.push(new Category(<?php echo $category -> properties -> sheetId;?>, ''));
+            categories.push(new Category(<?php echo $category -> id;?>, '<?php echo $category -> title;?>'));
         <?php endforeach; ?>
         $(document).ready(function( $ ) {
-            //changeContent(categories[0].id);
             applyLanguage();
-            getProductsForCategory('<?php echo $categories[0] -> properties -> sheetId; ?>');
+            getProductsForCategory('<?php echo $categories[0] -> id; ?>');
             modalInit();
             initSlider();
             refreshElements();
@@ -62,13 +57,6 @@ $categories = getCategories();
 //            //customtheme: ["#1c5a80", "#18374a"],
 //            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 //        })
-    </script>
-
-    <script language="javascript" type="text/javascript">
-        function clearText(field) {
-            if (field.defaultValue == field.value) field.value = '';
-            else if (field.value == '') field.value = field.defaultValue;
-        }
     </script>
 </head>
 
@@ -130,11 +118,11 @@ $categories = getCategories();
         	<h3 id="catTitle">Categories</h3>
             <ul class="sidebar_menu">
                 <?php foreach($categories as $category): ?>
-                    <li><a id="<?php echo $category -> properties -> sheetId; ?>"
+                    <li><a id="<?php echo $category -> id; ?>"
                            class="categoryLink"
-                           onclick="javascript:changeContent(<?php echo $category -> properties -> sheetId; ?>)">
-<!--                            --><?php //echo mb_convert_encoding($category -> properties -> title, "windows-1251", "utf-8"); ?><!--</a>-->
-                            <?php echo $category -> properties -> title; ?></a>
+                           onclick="javascript:changeContent(<?php echo $category -> id; ?>)">
+<!--                            --><?php //echo mb_convert_encoding($category -> title, "windows-1251", "utf-8"); ?><!--</a>-->
+                            <?php echo $category -> title; ?></a>
                     </li>
                 <?php endforeach; ?>
 

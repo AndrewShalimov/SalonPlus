@@ -83,11 +83,11 @@ var categoryContent = {};
 
 function setCategoryContent(content) {
     categoryContent = {};
-    categoryContent = JSON.parse(JSON.stringify(content));
-    for(var i = 0; i < content.length; i++) {
-        var obj = content[i];
+    categoryContent = JSON.parse(JSON.stringify(content)).products;
+    for(var i = 0; i < categoryContent.length; i++) {
+        var obj = categoryContent[i];
         $("#content").append("<div class='col col_14 product_gallery'>" +
-        "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); showProductDetails(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.image_name + "' /></a>" +
+        "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); findProductAndShow(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.imageName + "' /></a>" +
         //"<img class='thumbImage' src='" + thumbPath + obj.image_name + "' />" +
         "<div class='productTitle'>" + obj.title + "</div>" +
         "<p class='product_price'>" + obj.price + " " + lang[0].val + "</p>" +
@@ -96,14 +96,19 @@ function setCategoryContent(content) {
     }
 }
 
-function showProductDetails(rowId) {
-    var details = categoryContent[rowId].description;
-    var imageLink = productsPath + categoryContent[rowId].image_name;
-    $("#productDetailsTitle").html(categoryContent[rowId].title);
-    var grn = $.grep(lang, function(e){ return e.id == 'grn'; })[0].val;
-    $("#productDetailsPrice").html(categoryContent[rowId].price + '&nbsp' + grn + '.');
+function findProductAndShow(productId) {
+    var product = $.grep(categoryContent, function(e){ return e.id == productId; })[0];
+    showProductDetails(product);
+}
 
-    $("#productDetails_" + rowId).data("text", details);
+function showProductDetails(product) {
+    var details = product.description;
+    var imageLink = productsPath + product.imageName;
+    $("#productDetailsTitle").html(product.title);
+    var grn = $.grep(lang, function(e){ return e.id == 'grn'; })[0].val;
+    $("#productDetailsPrice").html(product.price + '&nbsp' + grn + '.');
+
+    $("#productDetails_" + product.id).data("text", details);
     //details = '<div>' + details.replace('. ', '<br>').replace('\n', '<br>') + '</div>';
     details = "<div class='productDetailsText'>" + details + "</div>";
 
@@ -116,15 +121,14 @@ function showProductDetails(rowId) {
 
 function initSlider() {
     $("#liSliderContent").empty();
-     var catIndex = getRandomInt(0, categories.length - 1);
-     getProductsForCategory(categories[catIndex].id, setSliderContent);
+    getRandomProducts(20, setSliderContent);
 }
 
-function setSliderContent(content) {
-    for(var i = 0; i < content.length; i++) {
-        var obj = content[i];
+function setSliderContent(products) {
+    for(var i = 0; i < products.length; i++) {
+        var product = products[i];
         $("#liSliderContent").append("<li><div class='SlideItMoo_element'>" +
-        "<a href='#' class='categoryLink' title=' " + obj.title + "'><img class='sliderImage'  title='" + obj.title + "' src='" + thumbPath + obj.image_name + "' border='0'/></a>" +
+        "<a id='sliderLink_" + product .categoryId + "_" + product .id + "' data-remodal-target='modal' class='categoryLink' onclick='getProductFromServerAndShow(" + product .categoryId + ", " + product .id + ");' ><img class='sliderImage' title='" + product.title + "' src='" + thumbPath + product.imageName + "' border='0'/></a>" +
         "</div></li>");
     }
     $('#scrollable').liquidcarousel({
@@ -133,7 +137,30 @@ function setSliderContent(content) {
             hidearrows: false
         }
     );
+    modalInit();
  }
+
+ function clearModal() {
+     $('#modal-content').html("");
+ }
+
+function getProductFromServerAndShow(categoryId, productId) {
+    $.ajax({
+        url: "getProduct.php",
+        type: "GET",
+        data: {
+            catID: categoryId,
+            productID: productId
+        },
+        dataType: "json",
+        success: function (product) {
+            showProductDetails(product);
+        },
+        error: function (err_data) {
+            console.log(err_data.responseText);
+        }
+    });
+}
 
 function refreshElements() {
     $("#siteLogo").addClass("hidden");
@@ -147,7 +174,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getProductsForCategory(categoryId, callback) {
+function getProductsForCategory_old(categoryId, callback) {
     $.ajax({
         url: "getProducts.php",
         type: "GET",
@@ -163,6 +190,79 @@ function getProductsForCategory(categoryId, callback) {
 
             }
             refreshElements();
+        },
+        error: function (err_data) {
+            console.log(err_data.responseText);
+        }
+    });
+}
+
+
+function getProductsForCategory(categoryId, callback) {
+    $.ajax({
+        url: "getProducts.php",
+        type: "GET",
+        data: {
+            catID: categoryId,
+            action: 'products_by_category'
+        },
+        dataType: "json",
+        success: function (responseData) {
+            if (callback) {
+                callback(responseData);
+            } else {
+                setCategoryContent(responseData);
+
+            }
+            refreshElements();
+        },
+        error: function (err_data) {
+            console.log(err_data.responseText);
+        }
+    });
+}
+
+
+function getRandomProducts(productsCount, callback) {
+    $.ajax({
+        url: "getProducts.php",
+        type: "GET",
+        data: {
+            count: productsCount,
+            action: 'random_products'
+        },
+        dataType: "json",
+        success: function (responseData) {
+            if (callback) {
+                callback(responseData);
+            } else {
+                setCategoryContent(responseData);
+
+            }
+            refreshElements();
+        },
+        error: function (err_data) {
+            console.log(err_data.responseText);
+        }
+    });
+}
+
+
+function getProduct(categoryId, productId, callback) {
+    $.ajax({
+        url: "getProduct.php",
+        type: "GET",
+        data: {
+            catID: categoryId,
+            productID: productId
+        },
+        dataType: "json",
+        success: function (responseData) {
+            if (callback) {
+                callback(responseData);
+            }
+            console.log(responseData);
+
         },
         error: function (err_data) {
             console.log(err_data.responseText);
@@ -186,4 +286,7 @@ function modalInit(modalContent) {
     $('[data-remodal-id^=modal]').remodal({
         hashTracking: false
     });
+    if(modalContent) {
+        $('#modal-content').html(modalContent);
+    };
 }

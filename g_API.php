@@ -1,6 +1,11 @@
 <?php
 require_once 'google-api-php-client/vendor/autoload.php';
 
+$API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
+$APP_NAME = 'SalonPlusSite';
+$spreadsheetId = '1HSfQ2I7E-jPAZiduzaRumL8R0DNkbAShKS4zUdfk3rk';
+$productsCachePath = './data/productsCache';
+
 function getCategories() {
     $API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
     $APP_NAME = 'SalonPlusSite';
@@ -23,7 +28,161 @@ function getCategories() {
     return $sheets;
 }
 
-function getProduct($spreadsheetId, $categoryId, $rowId) {
+
+function getCategories_cached() {
+    $data = unserialize( file_get_contents( $GLOBALS["productsCachePath"] ) );
+    $sheets = json_decode(json_encode($data));
+    return $sheets;
+}
+
+function getAllProducts_() {
+$start = microtime(true);
+    $client = new Google_Client();
+    $client->setApplicationName($GLOBALS["APP_NAME"]);
+    $client->setDeveloperKey($GLOBALS["API_KEY"]);
+    $service = new Google_Service_Sheets($client);
+    $spreadsheetId = '1HSfQ2I7E-jPAZiduzaRumL8R0DNkbAShKS4zUdfk3rk';
+//    $range = 'test!B1:B5';
+    $optParams['includeGridData'] = true;
+    $response = $service->spreadsheets->get($spreadsheetId, $optParams);
+    $sheets = json_decode(json_encode($response))->sheets;
+$time_elapsed_secs = microtime(true) - $start;
+echo $time_elapsed_secs;
+    return $sheets;
+}
+
+class Category {
+    public $title;
+    public $id;
+    public $products;
+
+    public function __construct($title, $id) {
+        $this->title = $title;
+        $this->id = $id;
+    }
+}
+
+class Product {
+    public $id;
+    public $title;
+    public $imageName;
+    public $description;
+    public $price;
+    public $categoryId;
+
+    public function __construct($id, $title, $imageName, $description, $price) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->imageName = $imageName;
+        $this->description = $description;
+        $this->price = $price;
+    }
+}
+
+function updateProductsCache() {
+
+    $start = microtime(true);
+    $client = new Google_Client();
+    $client->setApplicationName($GLOBALS["APP_NAME"]);
+    $client->setDeveloperKey($GLOBALS["API_KEY"]);
+    $service = new Google_Service_Sheets($client);
+
+    $optParams['includeGridData'] = false;
+    $response = $service->spreadsheets->get($GLOBALS["spreadsheetId"], $optParams);
+
+    $categoriesArray = [];
+    for ($i = 0; $i < sizeof($response->sheets); $i++) {
+        array_push($categoriesArray, new Category($response->sheets[$i]->properties->title, $response->sheets[$i]->properties->sheetId));
+    }
+
+    for ($i = 0; $i < sizeof($categoriesArray); $i++) {
+        $range = $categoriesArray[$i]->title;
+        $response = $service->spreadsheets_values->get($GLOBALS["spreadsheetId"], $range);
+        $productsArray = [];
+        if ($response[values] != null) {
+            $idIndex = array_search("id", $response->values[0]);
+            $titleIndex = array_search("title", $response->values[0]);
+            $imageNameIndex = array_search("image_name", $response->values[0]);
+            $descriptionIndex = array_search("description", $response->values[0]);
+            $priceIndex = array_search("price", $response->values[0]);
+
+            foreach(array_slice($response->values,1) as $productRow) :
+                $product = new Product($idIndex === null ? 0 : (int)str_replace(' ', '', $productRow[$idIndex]),
+                    $titleIndex === null ? "" : $productRow[$titleIndex],
+                    $imageNameIndex === null ? "" : $productRow[$imageNameIndex],
+                    $descriptionIndex === null ? "" : $productRow[$descriptionIndex],
+                    $priceIndex === null ? 0 : $productRow[$priceIndex]);
+                array_push($productsArray, $product);
+            endforeach;
+        }
+        $categoriesArray[$i]->products = $productsArray;
+    }
+
+    file_put_contents($GLOBALS["productsCachePath"], serialize($categoriesArray));
+
+$time_elapsed_secs = microtime(true) - $start;
+    echo "Products updated OK<br>";
+    echo "It took: " . $time_elapsed_secs . " sec.";
+}
+
+function getProduct_cached($categoryId, $productId)
+{
+    $data = unserialize(file_get_contents($GLOBALS["productsCachePath"]));
+    $category = null;
+    foreach ($data as $struct) {
+        if ($categoryId == $struct->id) {
+            $category = $struct;
+            break;
+        }
+    }
+    if ($category == null) {
+        return null;
+    }
+
+    $product = null;
+    foreach ($category->products as $struct) {
+        if ($productId == $struct->id) {
+            $product = $struct;
+            break;
+        }
+    }
+    return $product;
+}
+
+function getProducts_cached($categoryId) {
+    $data = unserialize( file_get_contents( $GLOBALS["productsCachePath"] ) );
+    $category = null;
+    foreach($data as $struct) {
+        if ($categoryId == $struct->id) {
+            $category = $struct;
+            break;
+        }
+    }
+    return $category;
+}
+
+function getRandomProducts_cached($count) {
+    $resultProducts = [];
+    $data = unserialize( file_get_contents( $GLOBALS["productsCachePath"] ) );
+    for ($i = 0; $i < $count; $i++) {
+        $min = 0;
+        $max = sizeof($data) - 1;
+        $randomCat = $data[rand($min, $max)];
+        $min = 0;
+        $max = sizeof($randomCat -> products) - 1;
+        $randomProduct = $randomCat->products[rand($min, $max)];
+        if ($randomProduct == null || empty($randomProduct -> imageName)) {
+            $count++;
+        } else {
+            $randomProduct -> categoryId = $randomCat -> id;
+            array_push($resultProducts, $randomProduct);
+        }
+    }
+    return $resultProducts;
+}
+
+
+function getProduct_($spreadsheetId, $categoryId, $rowId) {
     $API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
     $APP_NAME = 'SalonPlusSite';
 
@@ -69,5 +228,9 @@ function getProduct($spreadsheetId, $categoryId, $rowId) {
 //
 //    error_log('-------------token:');
 //    error_log($token);
-    getCategories();
+    //getAllProducts();
+//updateProductsCache();
+//getProduct_cached(2081529768, 3);
+//$result = getRandomProducts_cached(20);
+//echo $result;
 ?>
