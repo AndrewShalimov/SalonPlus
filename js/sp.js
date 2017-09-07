@@ -36,15 +36,24 @@ var lang = [
 function showProducts() {
     $("#content").empty();
     getProductsForCategory(categories[0].id);
+    highlightCategoryMenu(categories[0].id);
+}
+
+function highlightCategoryMenu(categoryId) {
+    $("a").removeClass("menu_active");
+    $("#" + categoryId).addClass("menu_active");
 }
 
 function showAbout() {
+    $("a").removeClass("menu_active");
 }
 
 function showHelp() {
+    $("a").removeClass("menu_active");
 }
 
 function goExit() {
+    $("a").removeClass("menu_active");
 }
 
 function applyLanguage() {
@@ -58,20 +67,24 @@ function applyLanguage() {
     refreshElements();
 }
 
-function changeContent(categoryId) {
+function changeContent(categoryId, link) {
     var url;
     var title;
     var price;
+    $("a").removeClass("menu_active");
+    $(link).addClass("menu_active");
     $("#content").empty();
     getProductsForCategory(categoryId);
 }
 
-
 function goHome() {
-
+    $("#content").empty();
+    getProductsForCategory(categories[0].id);
+    highlightCategoryMenu(categories[0].id);
 }
 
 function showContacts() {
+    $("a").removeClass("menu_active");
     $("#content").empty();
     var contactsContant = $("#contactsContent").html();
     $("#content").append(contactsContant);
@@ -115,7 +128,6 @@ function showProductDetails(product) {
     $("#modalMain").width('50%');
     modalInit(details);
 }
-
 
 function initSlider() {
     $("#liSliderContent").empty();
@@ -197,6 +209,7 @@ function getProductsForCategory_old(categoryId, callback) {
 
 
 function getProductsForCategory(categoryId, callback) {
+    $("#" + categoryId).addClass("menu_active");
     $.ajax({
         url: "getProducts.php",
         type: "GET",
