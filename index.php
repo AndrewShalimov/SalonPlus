@@ -121,7 +121,7 @@ $categories = getCategories_cached();
                     <li><a id="<?php echo $category -> id; ?>"
                            class="categoryLink"
                            onclick="javascript:changeContent(<?php echo $category -> id; ?>, this)">
-                            <?php echo $category -> title ?></a>
+                            <?php echo mb_convert_encoding($category -> title, "windows-1251", "utf-8"); ?></a>
                     </li>
                 <?php endforeach; ?>
 

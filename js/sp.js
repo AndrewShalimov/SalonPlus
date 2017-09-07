@@ -98,7 +98,7 @@ function setCategoryContent(content) {
     for(var i = 0; i < categoryContent.length; i++) {
         var obj = categoryContent[i];
         $("#content").append("<div class='col col_14 product_gallery'>" +
-        "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); findProductAndShow(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.imageName + "' /></a>" +
+        "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); findProductAndShow(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.imageNames[0] + "' /></a>" +
         //"<img class='thumbImage' src='" + thumbPath + obj.image_name + "' />" +
         "<div class='productTitle'>" + obj.title + "</div>" +
         "<p class='product_price'>" + obj.price + " " + lang[0].val + "</p>" +
@@ -114,7 +114,7 @@ function findProductAndShow(productId) {
 
 function showProductDetails(product) {
     var details = product.description;
-    var imageLink = productsPath + product.imageName;
+    var imageLink = productsPath + product.imageNames[0];
     $("#productDetailsTitle").html(product.title);
     var grn = $.grep(lang, function(e){ return e.id == 'grn'; })[0].val;
     $("#productDetailsPrice").html(product.price + '&nbsp' + grn + '.');
@@ -123,7 +123,11 @@ function showProductDetails(product) {
     //details = '<div>' + details.replace('. ', '<br>').replace('\n', '<br>') + '</div>';
     details = "<div class='productDetailsText'>" + details + "</div>";
 
-    var productImageBlock = "<div><img class='fullImage' src='" + imageLink + "'/></div>"
+    var productImageBlock = "<div><img class='fullImage' src='" + imageLink + "'/>";
+    if (product.imageNames.length > 1) {
+        productImageBlock = productImageBlock.concat("<span class='liquid next'></span>");
+    }
+    productImageBlock = productImageBlock.concat("</div>");
     details = productImageBlock + details;
     $("#modalMain").width('50%');
     modalInit(details);
@@ -138,7 +142,7 @@ function setSliderContent(products) {
     for(var i = 0; i < products.length; i++) {
         var product = products[i];
         $("#liSliderContent").append("<li><div class='SlideItMoo_element'>" +
-        "<a id='sliderLink_" + product .categoryId + "_" + product .id + "' data-remodal-target='modal' class='categoryLink' onclick='getProductFromServerAndShow(" + product .categoryId + ", " + product .id + ");' ><img class='sliderImage' title='" + product.title + "' src='" + thumbPath + product.imageName + "' border='0'/></a>" +
+        "<a id='sliderLink_" + product .categoryId + "_" + product .id + "' data-remodal-target='modal' class='categoryLink' onclick='getProductFromServerAndShow(" + product .categoryId + ", " + product .id + ");' ><img class='sliderImage' title='" + product.title + "' src='" + thumbPath + product.imageNames[0] + "' border='0'/></a>" +
         "</div></li>");
     }
     $('#scrollable').liquidcarousel({

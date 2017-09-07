@@ -65,15 +65,14 @@ class Category {
 class Product {
     public $id;
     public $title;
-    public $imageName;
+    public $imageNames = [];
     public $description;
     public $price;
     public $categoryId;
 
-    public function __construct($id, $title, $imageName, $description, $price) {
+    public function __construct($id, $title, $description, $price) {
         $this->id = $id;
         $this->title = $title;
-        $this->imageName = $imageName;
         $this->description = $description;
         $this->price = $price;
     }
@@ -109,9 +108,13 @@ function updateProductsCache() {
             foreach(array_slice($response->values,1) as $productRow) :
                 $product = new Product($idIndex === null ? 0 : (int)str_replace(' ', '', $productRow[$idIndex]),
                     $titleIndex === null ? "" : $productRow[$titleIndex],
-                    $imageNameIndex === null ? "" : $productRow[$imageNameIndex],
                     $descriptionIndex === null ? "" : $productRow[$descriptionIndex],
                     $priceIndex === null ? 0 : $productRow[$priceIndex]);
+                $imageNames = [];
+                if ($imageNameIndex != null) {
+                    $imageNames = explode("::", $productRow[$imageNameIndex]);
+                }
+                $product -> imageNames = $imageNames;
                 array_push($productsArray, $product);
             endforeach;
         }
@@ -125,8 +128,7 @@ $time_elapsed_secs = microtime(true) - $start;
     echo "It took: " . $time_elapsed_secs . " sec.";
 }
 
-function getProduct_cached($categoryId, $productId)
-{
+function getProduct_cached($categoryId, $productId) {
     $data = unserialize(file_get_contents($GLOBALS["productsCachePath"]));
     $category = null;
     foreach ($data as $struct) {
@@ -171,7 +173,7 @@ function getRandomProducts_cached($count) {
         $min = 0;
         $max = sizeof($randomCat -> products) - 1;
         $randomProduct = $randomCat->products[rand($min, $max)];
-        if ($randomProduct == null || empty($randomProduct -> imageName)) {
+        if ($randomProduct == null) {
             $count++;
         } else {
             $randomProduct -> categoryId = $randomCat -> id;
