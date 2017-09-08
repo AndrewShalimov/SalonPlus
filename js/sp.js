@@ -31,7 +31,7 @@ var lang = [
                         "\u0413\u0440\u0430\u0444\u0438\u043a \u0440\u0430\u0431\u043e\u0442\u044b \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442\u002d\u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430\u003a\u003c\u0062\u0072\u003e\n" +
                         "\u041f\u043d\u002e\u002d\u0412\u0441\u002e\u003a  \u0441 \u0031\u0030\u002e\u0030\u0030 \u0434\u043e \u0032\u0030\u002e\u0030\u0030\u003c\u0062\u0072\u003e\n"}
 ];
-
+var currentProduct;
 
 function showProducts() {
     $("#content").empty();
@@ -123,14 +123,48 @@ function showProductDetails(product) {
     //details = '<div>' + details.replace('. ', '<br>').replace('\n', '<br>') + '</div>';
     details = "<div class='productDetailsText'>" + details + "</div>";
 
-    var productImageBlock = "<div><img class='fullImage' src='" + imageLink + "'/>";
+
+
+    var productImageBlock = "<div><img id='fullImageModal' imageName='" + product.imageNames[0] + "' class='fullImage' src='" + imageLink + "'/>";
     if (product.imageNames.length > 1) {
-        productImageBlock = productImageBlock.concat("<span class='liquid next'></span>");
+        currentProduct = product;
+        "right"
+        var netxArrowBlock = "<div class='paginator'><span id='paginatorNext' class='next' onclick='goAnotherImage(\"right\");'></span></div>";
+        var prevArrowBlock = "<div class='paginator'><span id='paginatorPrev' class='prev' onclick='goAnotherImage(\"left\");'></span></div>";
+        productImageBlock = prevArrowBlock + netxArrowBlock + productImageBlock;
     }
     productImageBlock = productImageBlock.concat("</div>");
     details = productImageBlock + details;
     $("#modalMain").width('50%');
     modalInit(details);
+}
+
+function goAnotherImage(direction) {
+    var shift = 0;
+    switch (direction) {
+        case "right": {shift = 1; break;}
+        case "left": {shift = -1; break;}
+    }
+    var currentImageName = $("#fullImageModal").attr("imageName");
+    var nextImage;
+    currentProduct.imageNames.forEach(function(imageName, i) {
+        if (imageName == currentImageName) {
+            nextImage = currentProduct.imageNames[i + shift];
+            if (!nextImage) {
+                if (shift == 1) {
+                    nextImage = currentProduct.imageNames[0];
+                } else {
+                    nextImage = currentProduct.imageNames[currentProduct.imageNames.length - 1];
+                }
+            }
+            $("#fullImageModal").attr("imageName", nextImage);
+            return;
+        } else {
+
+        }
+    });
+
+    $("#fullImageModal").attr('src', productsPath + nextImage);
 }
 
 function initSlider() {

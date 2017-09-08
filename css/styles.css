@@ -172,3 +172,129 @@
     cursor: pointer;
 }
 
+
+.paginator-arrow {
+    opacity: 0.3;
+    position: absolute;
+    bottom: 0;
+    cursor:pointer;
+    width: 30px;
+}
+.paginator-link:hover {
+    opacity: 1;
+}
+.paginator-link {
+    font-size: 18px;
+    height: 35px;
+    min-width: 35px;
+    padding-top: 11px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #4088cb;
+    margin: 3px;
+    border-radius: 50%;
+    color: #fff;
+    vertical-align: top;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    line-height: 0.8;
+    font-family: 'PT Sans',sans-serif;
+    opacity: 0.3;
+}
+.paginator-arrow {
+    opacity: 0.3;
+    position: absolute;
+    bottom: 0;
+    cursor:pointer;
+    width: 30px;
+}
+.paginator-arrow:hover {
+    opacity: 1;
+}
+.paginator-arrow:nth-of-type(1) {
+    left: 0;
+}
+.paginator-arrow:nth-of-type(2) {
+    right: 0;
+}
+
+div.wrap {
+    width: 600px;
+    position: relative;
+    height: 50px;
+}
+
+.wrap img {
+    opacity: 0.3;
+    position: absolute;
+    bottom: 0;
+    cursor:pointer;
+    width: 30px;
+}
+.wrap img:hover {
+    opacity: 1;
+}
+
+
+.wrap img:nth-of-type(1) {
+    left: 0;
+}
+
+.wrap img:nth-of-type(2) {
+    right: 0;
+}
+
+.paginator {
+    /*background: #313b31 url('images/bodybackground.png') repeat-y scroll 50% 0;*/
+    /* background: #cfe4cf url('images/slider_background.png') repeat-x scroll 50% 0; */
+    /* border: 2px solid #19301C; */
+    /*-moz-border-radius: 10px 10px 10px 10px;*/
+    /* -webkit-border-radius: 10px 10px 10px 10px; */
+    /* border-radius: 10px 10px 10px 10px; */
+    /* padding: 10px 0; */
+}
+
+.paginator .next {
+    display: block;
+    height: 25px;
+    width: 30px;
+    background: url('images/slider_forward.png') no-repeat center;
+    float: right;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    color:#FFFFFF;
+    float:left;
+    position:absolute;
+    top: 49%;
+    left: 92%;
+    opacity: 0.4;
+}
+
+.paginator .prev {
+    display: block;
+    height: 25px;
+    width: 30px;
+    background: url('images/slider_back.png') no-repeat center;
+    float: right;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    color:#FFFFFF;
+    float:left;
+    position:absolute;
+    top: 49%;
+    left: 4%;
+    opacity: 0.4;
+}
+
+#paginatorNext:hover {
+    opacity: 1;
+}
+
+#paginatorPrev:hover {
+    opacity: 1;
+}
