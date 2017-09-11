@@ -88,9 +88,8 @@ $categories = getCategories_cached();
         <ul>
             <li><a class="categoryLink" onclick="showProducts();" id="homeTitle">Home</a></li>
             <li><a class="categoryLink" onclick="showProducts();" id="productsTitle">Products</a></li>
-            <li><a class="categoryLink" onclick="showAbout();" id="aboutTitle">About</a></li>
-            <li><a class="categoryLink" onclick="showHelp();" id="helpTitle">FAQs</a></li>
-            <li><a class="categoryLink" onclick="goExit();" id="exitTitle">Checkout</a></li>
+            <li><a class="categoryLink" onclick="showAbout();" id="infoTitle">About</a></li>
+            <li><a class="categoryLink" onclick="showShare();" id="shareTitle">FAQs</a></li>
             <li><a id="contacts" class="categoryLink" onclick="showContacts();">Contact</a></li>
         </ul>
         <br style="clear: left" />

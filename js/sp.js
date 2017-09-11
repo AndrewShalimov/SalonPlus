@@ -2,6 +2,8 @@
 var thumbPath = 'images/products/thumbs/';
 var productsPath = 'images/products/';
 
+
+//$("#templatemo_menu li:last-child").css({ 'float': 'right' })
 var lang = [
     {id: "grn", val: "\u0433\u0440\u043d"},
     {id: "catTitle", val: "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438"},
@@ -23,9 +25,9 @@ var lang = [
     {id: "info_2", val: "\u0433\u002e\u0425\u0430\u0440\u044c\u043a\u043e\u0432\u002c \u0423\u043b\u002e \u041a\u043e\u0441\u0442\u043e\u043c\u0430\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u0035\u002f\u0037<br>" +
                         "\u0417\u0430\u0435\u0437\u0434 \u0441 \u0443\u043b\u002e\u041c\u0438\u0440\u043e\u043d\u043e\u0441\u0438\u0446\u043a\u043e\u0439 \u0438\u043b\u0438 \u0441 \u0443\u043b\u002e\u0427\u0435\u0440\u043d\u044b\u0448\u0435\u0432\u0441\u043a\u043e\u0433\u043e \u0432 \u0430\u0440\u043a\u0443\u002e"},
     {id: "homeTitle", val: "\u0414\u043e\u043c\u043e\u0439"},
-    {id: "productsTitle", val: "\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u044b"},
-    {id: "aboutTitle", val: "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"},
-    {id: "helpTitle", val: "\u041f\u043e\u043c\u043e\u0449\u044c"},
+    {id: "productsTitle", val: "\u041f\u0440\u043e\u0434\u0443\u043a\u0446\u0438\u044f"},
+    {id: "infoTitle", val: "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"},
+    {id: "shareTitle", val: "\u0410\u043a\u0446\u0438\u0438"},
     {id: "exitTitle", val: "\u0412\u044b\u0445\u043e\u0434"},
     {id: "info_3", val: "\u003c\u0062\u0072\u003e\u003c\u0062\u0072\u003e\t\t\t\t\t\t\n" +
                         "\u0413\u0440\u0430\u0444\u0438\u043a \u0440\u0430\u0431\u043e\u0442\u044b \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442\u002d\u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430\u003a\u003c\u0062\u0072\u003e\n" +
@@ -44,7 +46,7 @@ function highlightCategoryMenu(categoryId) {
     $("#" + categoryId).addClass("menu_active");
 }
 
-function showAbout() {
+function showShare() {
     $("a").removeClass("menu_active");
 }
 
