@@ -79,8 +79,13 @@ function changeContent(categoryId, link) {
 
 function goHome() {
     $("#content").empty();
-    getProductsForCategory(categories[0].id);
-    highlightCategoryMenu(categories[0].id);
+    $("a").removeClass("menu_active");
+    var welcomeContent = $("#welcomeContent").html();
+    $("#content").append(welcomeContent);
+
+    //
+    // getProductsForCategory(categories[0].id);
+    // highlightCategoryMenu(categories[0].id);
 }
 
 function showContacts() {

@@ -4,6 +4,7 @@
 <?php
 // I18N support information here
 include_once('g_API.php');
+include_once('messagesUtils.php');
 $language = 'en';
 putenv("LANG=$language");
 setlocale(LC_ALL, $language);
@@ -86,12 +87,12 @@ $categories = getCategories_cached();
     
     <div id="templatemo_menu" class="ddsmoothmenu">
         <ul>
-            <li><a class="categoryLink" onclick="showProducts();" id="homeTitle">Home</a></li>
+            <li><a class="categoryLink" onclick="goHome();" id="homeTitle">Home</a></li>
             <li><a class="categoryLink" onclick="showProducts();" id="productsTitle">Products</a></li>
             <li><a class="categoryLink" onclick="showAbout();" id="aboutTitle">About</a></li>
             <li><a class="categoryLink" onclick="showHelp();" id="helpTitle">FAQs</a></li>
             <li><a class="categoryLink" onclick="goExit();" id="exitTitle">Checkout</a></li>
-            <li><a id="contacts" class="categoryLink" onclick="showContacts();">Contact</a></li>
+            <li><a class="categoryLink" onclick="showContacts();" id="contacts">Contact</a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
@@ -214,6 +215,45 @@ $categories = getCategories_cached();
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.1045822564242!2d36.24110841607634!3d50.009394979417024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a0d961787bab%3A0x9588eeeb8c8b2c10!2z0JrQvtGB0YLQvtC80LDRgNGW0LLRgdGM0LrQsCDQstGD0LvQuNGG0Y8sIDUvNywg0KXQsNGA0LrRltCyLCDQpdCw0YDQutGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1sru!2sua!4v1504646854273" width="600" height="450" frameborder="0" style="border:0"></iframe>
 </div>
 
+<div id="welcomeContent" class="hidden">
+    <h2><p id="welcomeInfo">Добро пожаловать!</p></h2>
+
+    <div class="col col_13">
+        <p>
+            SalonPlus» является крупным и популярным интернет магазином высококачественных одноразовых
+            расходных материалов для салонов красоты, стоматологии, медицинских и фитнес-центров.
+            Главный секрет успеха нашей компании - европейское обслуживание.
+        </p>
+        <p>
+            Наш интернет-магазин предлагает Вам:
+            <ul>
+                <li>самый широкий ассортимент одноразовых расходных материалов</li>
+                <li>доступные низкие цены</li>
+                <li>быструю и бесплатную доставка по Харькову</li>
+                <li>возможность доставки в любой город Украины транспортными компаниями</li>
+                <li>оптовые цены при большом заказе</li>
+                <li>сертифицированную в Украине продукцию</li>
+                <li>постоянное расширение ассортимента</li>
+            </ul>
+        </p>
+        <p>
+            Мы дорожим доверием клиентов, поэтому предлагаем только оригинальный и качественный продукт.
+            Наши покупатели всегда могут убедиться в подлинности покупки и проверить свой заказ в присутствии курьера.
+        </p>
+        <p>
+            Наши клиенты всегда могут получить профессиональную консультацию у наших менеджеров,
+            достаточно позвонить по одному из указанных на сайте номеров.
+            Менеджер поможет не только подобрать товар, но и ответит на все интересующие вас вопросы относительно работы магазина,
+            оформит ваш заказ и сориентирует по времени доставки.
+        </p>
+        <p>
+            Уважаемые покупатели!
+            Уточняйте, пожалуйста, актуальность цены и наличие товара у менеджера на день формирования заказа!
+        </p>
+    </div>
+
+    <div class="cleaner h30"></div>
+</div>
 
 
 </body>
