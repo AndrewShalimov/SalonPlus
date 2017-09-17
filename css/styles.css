@@ -298,3 +298,9 @@ div.wrap {
 #paginatorPrev:hover {
     opacity: 1;
 }
+
+.importantBlock {
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+}

@@ -321,9 +321,25 @@ table td { border-bottom: 1px solid #ccc }
 	float: left;
 	width: 300px
 }
-.col_14 {width: 30%;display: inline-grid;}
-.col_15 { width: 400px }
-.col_16 { width: 140px }
-.col_23 { width: 620px }
+
+.col_14 {
+	width: 30%;
+	display: inline-grid;
+}
+
+.col_15 {
+	width: 400px
+}
+
+.col_16 {
+	width: 140px
+}
+
+.col_23 {
+	width: 620px;
+	font-size: 15px;
+
+
+}
 
 .no_margin_right { margin-right: 0 }

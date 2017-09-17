@@ -45,8 +45,9 @@ $categories = getCategories_cached();
             categories.push(new Category(<?php echo $category -> id;?>, '<?php echo $category -> title;?>'));
         <?php endforeach; ?>
         $(document).ready(function( $ ) {
-            applyLanguage();
-            getProductsForCategory('<?php echo $categories[0] -> id; ?>');
+            //applyLanguage();
+            //getProductsForCategory('<?php echo $categories[0] -> id; ?>');
+            goHome();
             modalInit();
             initSlider();
             refreshElements();
@@ -71,6 +72,7 @@ $categories = getCategories_cached();
         </div>
 
         <div id="siteTitle" class="divColumn siteTitle">
+            <?php echo getMessage('siteTitle')?>
         </div>
 
         <div id="headerRight" class="divColumn contactsDiv">
@@ -87,12 +89,11 @@ $categories = getCategories_cached();
     
     <div id="templatemo_menu" class="ddsmoothmenu">
         <ul>
-            <li><a class="categoryLink" onclick="goHome();" id="homeTitle">Home</a></li>
-            <li><a class="categoryLink" onclick="showProducts();" id="productsTitle">Products</a></li>
-            <li><a class="categoryLink" onclick="showAbout();" id="aboutTitle">About</a></li>
-            <li><a class="categoryLink" onclick="showHelp();" id="helpTitle">FAQs</a></li>
-            <li><a class="categoryLink" onclick="goExit();" id="exitTitle">Checkout</a></li>
-            <li><a class="categoryLink" onclick="showContacts();" id="contacts">Contact</a></li>
+            <li><a class="categoryLink" onclick="goHome();" id="homeTitle"><?php echo getMessage('homeTitle')?></a></li>
+            <li><a class="categoryLink" onclick="showProducts();" id="productsTitle"><?php echo getMessage('productsTitle')?></a></li>
+            <li><a class="categoryLink" onclick="showAbout();" id="infoTitle"><?php echo getMessage('infoTitle')?></a></li>
+            <li><a class="categoryLink" onclick="showShare();" id="shareTitle"><?php echo getMessage('shareTitle')?></a></li>
+            <li><a class="categoryLink" onclick="showContacts();" id="contactsTitle"><?php echo getMessage('contactsTitle')?></a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
@@ -116,13 +117,16 @@ $categories = getCategories_cached();
     <div id="templatemo_main">
 
         <div id="sidebar">
-        	<h3 id="catTitle">Categories</h3>
+        	<h3 id="catTitle"><?php echo getMessage('catTitle')?></h3>
             <ul class="sidebar_menu">
                 <?php foreach($categories as $category): ?>
                     <li><a id="<?php echo $category -> id; ?>"
                            class="categoryLink"
                            onclick="javascript:changeContent(<?php echo $category -> id; ?>, this)">
-                            <?php echo $category -> title ?></a>
+                            <?php if (runLocally())
+                                    {echo mb_convert_encoding($category -> title, "windows-1251", "utf-8");}
+                                  else {echo $category -> title;}
+                            ?></a>
                     </li>
                 <?php endforeach; ?>
 
@@ -168,30 +172,23 @@ $categories = getCategories_cached();
 </div>
 
 <div id="contactsContent" class="hidden">
-    <h2><p id="contactsInfo">Contact Information</p></h2>
+    <h2><p id="contactsInfo"><?php echo getMessage('contactsInfo')?></p></h2>
 
     <div class="col col_13">
         <p id="info_1">
-            Все товары продаются с доставкой по Харькову и по всей Украине
-            службами доставки " Новая почта" или " Ин-тайм "
-            Для жителей и гостей г. Харькова есть возможность самовывоза.
+            <?php echo getMessage('info_1')?>
         </p>
 
         <div>
             <p id="info_3">
                 <br><br>
-                График работы интернет-магазина:<br>
-                Пн.-Сб.:  с 10.00 до 18.00<br>
-                Воскресенье - выходной<br>
+                <?php echo getMessage('info_3')?>
             </p>
         </div>
     </div>
     <div class="col col_13">
         <p id="info_0">
-            Сделать заказ, оформить курьерскую доставку,
-            получить консультацию по интересующей Вас продукции,
-            задать вопросы, связанные с оформлением заказа,
-            оплатой и доставкой, вы можете по телефонам:
+            <?php echo getMessage('info_0')?>:
         </p>
         +38(050)938-28-03<br>
         +38(098)509-36-96<br>
@@ -200,10 +197,9 @@ $categories = getCategories_cached();
 
         <div class="cleaner h30"></div>
 
-        <h5><p id="postAddress">Почтовый адрес</p></h5>
+        <h5><p id="postAddress"><?php echo getMessage('postAddress')?></p></h5>
         <p id="info_2">
-            Ул. Костомаровская 5/7<br />
-            Заезд с Мироносицкой или с Чернышевского в арку.<br />
+            <?php echo getMessage('info_2')?>
         </p>
     </div>
 
@@ -216,39 +212,33 @@ $categories = getCategories_cached();
 </div>
 
 <div id="welcomeContent" class="hidden">
-    <h2><p id="welcomeInfo">Добро пожаловать!</p></h2>
+    <h2><p id="welcomeInfo"><?php echo getMessage('welcome_0')?>!</a></p></h2>
 
-    <div class="col col_13">
+    <div class="col col_23">
         <p>
-            SalonPlus» является крупным и популярным интернет магазином высококачественных одноразовых
-            расходных материалов для салонов красоты, стоматологии, медицинских и фитнес-центров.
-            Главный секрет успеха нашей компании - европейское обслуживание.
+            <?php echo getMessage('welcome_1')?>
         </p>
         <p>
-            Наш интернет-магазин предлагает Вам:
+            <?php echo getMessage('welcome_2')?>:
             <ul>
-                <li>самый широкий ассортимент одноразовых расходных материалов</li>
-                <li>доступные низкие цены</li>
-                <li>быструю и бесплатную доставка по Харькову</li>
-                <li>возможность доставки в любой город Украины транспортными компаниями</li>
-                <li>оптовые цены при большом заказе</li>
-                <li>сертифицированную в Украине продукцию</li>
-                <li>постоянное расширение ассортимента</li>
+                <li><?php echo getMessage('welcome_li_0')?></li>
+                <li><?php echo getMessage('welcome_li_1')?></li>
+                <li><?php echo getMessage('welcome_li_2')?></li>
+                <li><?php echo getMessage('welcome_li_3')?></li>
+                <li><?php echo getMessage('welcome_li_4')?></li>
+                <li><?php echo getMessage('welcome_li_5')?></li>
+                <li><?php echo getMessage('welcome_li_6')?></li>
             </ul>
         </p>
         <p>
-            Мы дорожим доверием клиентов, поэтому предлагаем только оригинальный и качественный продукт.
-            Наши покупатели всегда могут убедиться в подлинности покупки и проверить свой заказ в присутствии курьера.
+            <?php echo getMessage('welcome_3')?>
         </p>
         <p>
-            Наши клиенты всегда могут получить профессиональную консультацию у наших менеджеров,
-            достаточно позвонить по одному из указанных на сайте номеров.
-            Менеджер поможет не только подобрать товар, но и ответит на все интересующие вас вопросы относительно работы магазина,
-            оформит ваш заказ и сориентирует по времени доставки.
+            <?php echo getMessage('welcome_4')?>
         </p>
-        <p>
-            Уважаемые покупатели!
-            Уточняйте, пожалуйста, актуальность цены и наличие товара у менеджера на день формирования заказа!
+        <p class="importantBlock">
+            <?php echo getMessage('welcome_5')?>!<br>
+            <?php echo getMessage('welcome_6')?>!
         </p>
     </div>
 
