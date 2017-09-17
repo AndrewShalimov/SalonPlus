@@ -312,8 +312,15 @@ table td { border-bottom: 1px solid #ccc }
 	font-size: 11px;
 }
 
-.col { float: left; margin-right: 20px }
-.col_13 { width: 300px }
+.col { 
+/*	float: left; */
+	margin-right: 20px 
+}
+
+.col_13 {
+	float: left;
+	width: 300px
+}
 .col_14 {width: 30%;display: inline-grid;}
 .col_15 { width: 400px }
 .col_16 { width: 140px }

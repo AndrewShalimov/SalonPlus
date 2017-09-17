@@ -1,24 +1,22 @@
 <?php
 require_once 'google-api-php-client/vendor/autoload.php';
 
-$API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
-$APP_NAME = 'SalonPlusSite';
-$spreadsheetId = '1HSfQ2I7E-jPAZiduzaRumL8R0DNkbAShKS4zUdfk3rk';
+
+$ini_array = parse_ini_file("app_conf.ini");
+//print_r($ini_array);
+
+$API_KEY = $ini_array[API_KEY];
+$APP_NAME = $ini_array[APP_NAME];
+$spreadsheetId = $ini_array[SPREADSHEET_ID];
 $productsCachePath = './data/productsCache';
 
 function getCategories() {
-    $API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
-    $APP_NAME = 'SalonPlusSite';
-
     $client = new Google_Client();
-    $client->setApplicationName($APP_NAME);
-    $client->setDeveloperKey($API_KEY);
+    $client->setApplicationName($GLOBALS["APP_NAME"]);
+    $client->setDeveloperKey($GLOBALS["API_KEY"]);
     $service = new Google_Service_Sheets($client);
-
-    $spreadsheetId = '1HSfQ2I7E-jPAZiduzaRumL8R0DNkbAShKS4zUdfk3rk';
-    $range = 'test!B1:B5';
     $optParams['includeGridData'] = false;
-    $response = $service->spreadsheets->get($spreadsheetId, $optParams);
+    $response = $service->spreadsheets->get($GLOBALS["spreadsheetId"], $optParams);
     //$response = $service->spreadsheets_values->get($spreadsheetId, $includeGridData);
     //$values = $response->getValues();
     //$response -> getProperties();
@@ -41,10 +39,8 @@ $start = microtime(true);
     $client->setApplicationName($GLOBALS["APP_NAME"]);
     $client->setDeveloperKey($GLOBALS["API_KEY"]);
     $service = new Google_Service_Sheets($client);
-    $spreadsheetId = '1HSfQ2I7E-jPAZiduzaRumL8R0DNkbAShKS4zUdfk3rk';
-//    $range = 'test!B1:B5';
     $optParams['includeGridData'] = true;
-    $response = $service->spreadsheets->get($spreadsheetId, $optParams);
+    $response = $service->spreadsheets->get($GLOBALS["spreadsheetId"], $optParams);
     $sheets = json_decode(json_encode($response))->sheets;
 $time_elapsed_secs = microtime(true) - $start;
 echo $time_elapsed_secs;
@@ -185,12 +181,10 @@ function getRandomProducts_cached($count) {
 
 
 function getProduct_($spreadsheetId, $categoryId, $rowId) {
-    $API_KEY = 'AIzaSyBoPJ2orpL4iYvlZ-BqKIEpi4BN1JrA0mU';
-    $APP_NAME = 'SalonPlusSite';
 
     $client = new Google_Client();
-    $client->setApplicationName($APP_NAME);
-    $client->setDeveloperKey($API_KEY);
+    $client->setApplicationName($GLOBALS["API_NAME"]);
+    $client->setDeveloperKey($GLOBALS["API_KEY"]);
     $service = new Google_Service_Sheets($client);
 
     $range = 'test!B1:B5';

@@ -35,3 +35,5 @@ services/auto-batch-upload-service/.idea/*.*
 services/auto-batch-upload-service/.idea/**
 services/auto-batch-upload-service/.idea/modules/**
 services/auto-batch-upload-service/.idea/workspace.xml
+app_conf.ini
+old
