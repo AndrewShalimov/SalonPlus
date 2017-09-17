@@ -5,14 +5,9 @@
 // I18N support information here
 include_once('g_API.php');
 include_once('messagesUtils.php');
-$language = 'en';
-putenv("LANG=$language");
-setlocale(LC_ALL, $language);
-// Set the text domain as 'messages'
-$domain = 'messages';
-bindtextdomain($domain, "/www/htdocs/site.com/locale");
-textdomain($domain);
-//echo gettext("A string to be translated would go here");
+include_once('statisticsUtils.php');
+
+countVisitor();
 $categories = getCategories_cached();
 ?>
 
