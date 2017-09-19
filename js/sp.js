@@ -98,7 +98,8 @@ function setCategoryContent(content) {
     categoryContent = JSON.parse(JSON.stringify(content)).products;
     for(var i = 0; i < categoryContent.length; i++) {
         var obj = categoryContent[i];
-        $("#content").append("<div class='col col_14 product_gallery'>" +
+
+        $("#content").append("<div class='col " + (getBrowser().isIE ? " col_14_IE " : " col_14 ") + " product_gallery'>" +
         "<a id='productDetails_" + obj.id + "' data-remodal-target='modal' class='thumbLink' onclick='modalInit(); findProductAndShow(" + obj.id + ");'><img class='thumbImage' src='" + thumbPath + obj.imageNames[0] + "' /></a>" +
         //"<img class='thumbImage' src='" + thumbPath + obj.image_name + "' />" +
         "<div class='productTitle'>" + obj.title + "</div>" +
@@ -112,6 +113,35 @@ function findProductAndShow(productId) {
     var product = $.grep(categoryContent, function(e){ return e.id == productId; })[0];
     showProductDetails(product);
 }
+
+function getBrowser() {
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    var result = {
+        "isFirefox": isFirefox,
+        "isChrome": isChrome,
+        "isSafari": isSafari,
+        "isOpera": isOpera,
+        "isIE": isIE,
+        "isEdge": isEdge,
+        "isBlink": isBlink
+    }
+    return result;
+}
+
 
 function showProductDetails(product) {
     var details = product.description;
