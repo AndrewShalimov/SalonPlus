@@ -34,15 +34,8 @@ function countVisitor() {
 
 function getStat() {
     $stat = unserialize( file_get_contents($GLOBALS["fileName"]));
-    echo "visitors:";
-    echo $stat -> visitorsCount, "<br>";
-    for ($i = 0; $i < sizeof($stat -> visits); $i++) {
-        echo "address: ",
-             $stat -> visits[$i] -> hostAddress,
-             ", date: ",
-             $stat -> visits[$i] -> date->format('Y-m-d H:i:s'),
-             "<br>";
-    }
+    return $stat; 
+
 }
 
 //getStat();

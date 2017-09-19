@@ -75,7 +75,6 @@ class Product {
 }
 
 function updateProductsCache() {
-
     $start = microtime(true);
     $client = new Google_Client();
     $client->setApplicationName($GLOBALS["APP_NAME"]);
