@@ -42,6 +42,9 @@ function highlightCategoryMenu(categoryId) {
 
 function showShare() {
     $("a").removeClass("menu_active");
+    $("#content").empty();
+    var sharesContent = $("#sharesContent").html();
+    $("#content").append(sharesContent);
 }
 
 function showHelp() {

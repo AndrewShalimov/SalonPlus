@@ -304,3 +304,20 @@ div.wrap {
     font-weight: bold;
     color: red;
 }
+
+.shares {
+    margin: 0px 55px 10px 0;
+    text-align: center;
+}
+
+.sharesText {
+    margin: 0px 55px 10px 20px;
+    padding: 15px 0 15px 0px;
+    text-align: center;
+    font-size: 1.84615em;
+    font-weight: bold;
+    line-height: 1.125em;
+    border-style: dotted;
+    border-color: red;
+    color: coral;
+}
