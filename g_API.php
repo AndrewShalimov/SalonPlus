@@ -2,7 +2,7 @@
 require_once 'google-api-php-client/vendor/autoload.php';
 
 
-$ini_array = parse_ini_file("app_conf.ini");
+$ini_array = parse_ini_file("data/app_conf.ini");
 //print_r($ini_array);
 
 $API_KEY = $ini_array[API_KEY];
