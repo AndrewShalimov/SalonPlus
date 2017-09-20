@@ -42,9 +42,23 @@ function highlightCategoryMenu(categoryId) {
 
 function showShare() {
     $("a").removeClass("menu_active");
-    $("#content").empty();
-    var sharesContent = $("#sharesContent").html();
-    $("#content").append(sharesContent);
+    getShares(function (products) {
+        if(!products) {
+            $("#content").empty();
+            return;
+        }
+        for (var i = 0; i < products.length; i++) {
+            var product = products[i];
+            var sharesTitle = "<a id='sharesLink_" + i + "' data-remodal-target='modal' class='sharesLink categoryLink' onclick='getProductFromServerAndShow(" + product.categoryId + "," + product.id + ")'>" + product.title + "</a>";
+            $("#sharesTitle").html(sharesTitle);
+            var sharesText = product.shares;
+            $("#sharesText").html(sharesText);
+        }
+        $("#content").empty();
+        var sharesContent = $("#sharesContent").html();
+        $("#content").append(sharesContent);
+    });
+
 }
 
 function showHelp() {
@@ -321,6 +335,27 @@ function getRandomProducts(productsCount, callback) {
             } else {
                 setCategoryContent(responseData);
 
+            }
+            refreshElements();
+        },
+        error: function (err_data) {
+            console.log(err_data.responseText);
+        }
+    });
+}
+
+
+function getShares(callback) {
+    $.ajax({
+        url: "getProducts.php",
+        type: "GET",
+        data: {
+            action: 'shares'
+        },
+        dataType: "json",
+        success: function (responseData) {
+            if (callback) {
+                callback(responseData);
             }
             refreshElements();
         },

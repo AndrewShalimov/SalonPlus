@@ -17,6 +17,11 @@ if ($action == "random_products") {
     $result = $products;
 }
 
+if ($action == "shares") {
+    $products = getShares();
+    $result = $products;
+}
+
 header('Content-type: application/json');
 echo json_encode($result);
 

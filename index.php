@@ -245,7 +245,12 @@ $categories = getCategories_cached();
 
     <div class="col col_23 sharesText">
         <p>
-            <?php echo getMessage('shares_text')?>
+            <div id="sharesTitle">
+            </div>
+        </p>
+        <p>
+            <div id="sharesText">
+            </div>
         </p>
     </div>
 

@@ -65,6 +65,7 @@ class Product {
     public $description;
     public $price;
     public $categoryId;
+    public $shares;
 
     public function __construct($id, $title, $description, $price) {
         $this->id = $id;
@@ -99,6 +100,7 @@ function updateProductsCache() {
             $imageNameIndex = array_search("image_name", $response->values[0]);
             $descriptionIndex = array_search("description", $response->values[0]);
             $priceIndex = array_search("price", $response->values[0]);
+            $sharesIndex = array_search("shares", $response->values[0]);
 
             foreach(array_slice($response->values,1) as $productRow) :
                 $product = new Product($idIndex === null ? 0 : (int)str_replace(' ', '', $productRow[$idIndex]),
@@ -109,7 +111,11 @@ function updateProductsCache() {
                 if ($imageNameIndex != null) {
                     $imageNames = explode("::", $productRow[$imageNameIndex]);
                 }
-                $product -> imageNames = $imageNames;
+                $product->imageNames = $imageNames;
+                if ($sharesIndex != null) {
+                    $product -> shares = $productRow[$sharesIndex];
+                }
+                $product->categoryId = $categoriesArray[$i]->id;
                 array_push($productsArray, $product);
             endforeach;
         }
@@ -173,6 +179,19 @@ function getRandomProducts_cached($count) {
         } else {
             $randomProduct -> categoryId = $randomCat -> id;
             array_push($resultProducts, $randomProduct);
+        }
+    }
+    return $resultProducts;
+}
+
+function getShares() {
+    $resultProducts = [];
+    $data = unserialize(file_get_contents($GLOBALS["productsCachePath"]));
+    foreach ($data as $category) {
+        foreach ($category->products as $product) {
+            if ($product->shares != null) {
+                array_push($resultProducts, $product);
+            }
         }
     }
     return $resultProducts;

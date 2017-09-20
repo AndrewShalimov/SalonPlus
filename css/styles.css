@@ -317,7 +317,12 @@ div.wrap {
     font-size: 1.84615em;
     font-weight: bold;
     line-height: 1.125em;
-    border-style: dotted;
+    border: 10px double red;
     border-color: red;
-    color: coral;
+    color: red;
+}
+
+.sharesLink {
+    color: red;
+    font-size: larger;
 }
