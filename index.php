@@ -243,15 +243,8 @@ $categories = getCategories_cached();
 <div id="sharesContent" class="hidden">
     <h2><p class="importantBlock shares" id="sharesInfo"><?php echo getMessage('shares_0')?> !!!</a></p></h2>
 
-    <div class="col col_23 sharesText">
-        <p>
-            <div id="sharesTitle">
-            </div>
-        </p>
-        <p>
-            <div id="sharesText">
-            </div>
-        </p>
+    <div id="sharesInnerContent" class="col col_23 sharesText">
+
     </div>
 
     <div class="cleaner h30"></div>
