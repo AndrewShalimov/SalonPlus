@@ -54,7 +54,8 @@ include_once('statisticsUtils.php');
             <tbody>
                 <?php foreach($statisticsData -> visits as $visit): ?>
                     <tr>
-                        <td class="tg-yw4l"><?php echo $visit -> hostAddress; ?></td>  <td class="tg-yw4l"><?php echo $visit -> date->format('Y-m-d H:i:s') ?></td>
+                        <td class="tg-yw4l"><a href="https://ru.infobyip.com/ip-<?php echo $visit -> hostAddress; ?>.html" target="_blank"><?php echo $visit -> hostAddress; ?></a></td>
+                        <td class="tg-yw4l"><?php echo $visit -> date->format('Y-m-d H:i:s') ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
