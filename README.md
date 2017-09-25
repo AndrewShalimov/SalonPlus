@@ -12,3 +12,5 @@ http://jquerytools.github.io/demos/scrollable/gallery.html
 <?php echo mb_convert_encoding($category -> title, "windows-1251", "utf-8"); ?></a>
 
 http://www.nikolakis.net/liquidcarousel/#
+https://www.algolia.com/doc/tutorials/search-ui/autocomplete/auto-complete - search autocomplete
+http://trentrichardson.com/Impromptu/ - nice dialogs
