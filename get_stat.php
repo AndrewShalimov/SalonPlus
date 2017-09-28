@@ -43,23 +43,33 @@ include_once('statisticsUtils.php');
 </head>
 
 <body id="home">
-    <div id="header" class="divRow">
-        <table class="tg scroll">
-            <thead>
-                <tr>
-                    <th class="tg-amwm">Address</th>
-                    <th class="tg-amwm">Date, time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($statisticsData -> visits as $visit): ?>
+    <div>
+       
+        <div id="header" class="divRow" style="float:left;width: 20%;">
+            <table class="tg scroll">
+                <thead>
                     <tr>
-                        <td class="tg-yw4l"><a href="https://ru.infobyip.com/ip-<?php echo $visit -> hostAddress; ?>.html" target="_blank"><?php echo $visit -> hostAddress; ?></a></td>
-                        <td class="tg-yw4l"><?php echo $visit -> date->format('Y-m-d H:i:s') ?></td>
+                        <th class="tg-amwm">Address</th>
+                        <th class="tg-amwm">Date, time</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
+                </thead>
+                <tbody>
+                    <?php foreach($statisticsData -> visits as $visit): ?>
+                        <tr>
+                            <td class="tg-yw4l"><a href="https://ru.infobyip.com/ip-<?php echo $visit -> hostAddress; ?>.html" target="_blank"><?php echo $visit -> hostAddress; ?></a></td>
+                            <td class="tg-yw4l"><?php echo $visit -> date->format('Y-m-d H:i:s') ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
+        
+        <div style="float:right; width: 80%;">
+            <?php echo str_replace("\n", "<br>", getAccessLogContent()); ?>
+        </div>
+
     </div>
+
+
 </body>
