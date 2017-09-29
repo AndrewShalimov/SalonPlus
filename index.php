@@ -250,6 +250,9 @@ $categories = getCategories_cached();
     <div class="cleaner h30"></div>
 </div>
 
+<div id="loading" class="hidden">
+    <div></div>
+</div>
 
 </body>
 </html>
