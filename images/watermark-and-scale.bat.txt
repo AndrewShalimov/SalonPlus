@@ -1,0 +1,10 @@
+@echo off 
+for %%i in (to_convert/*.jpg) do (^
+   magick convert "to_convert/%%i" -auto-orient "to_convert/%%i"^
+   && magick composite -watermark 10 -gravity center watermark-white.png "to_convert/%%i" "watermarked/%%i"^
+   && echo "composite of %%i successful"^
+   && magick convert -resize 30%% "watermarked/%%i" "watermarked/%%i"^
+   && echo "resizing of %%i to 30%% successful"^
+   && del "%cd%\to_convert\%%i"^
+   && echo "Successfully deleted %cd%\to_convert\%%i" )
+pause
