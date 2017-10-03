@@ -184,7 +184,11 @@ function showProductDetails(product) {
     details = productImageBlock + details;
     $("#modalMain").width('50%');
 
+
     $('#modal-content').html(details);
+    $("#fullImageModal")[0].onload = function () {
+        hideLoading();
+    }
     var inst = $('[data-remodal-id=modal]').remodal();
     inst.open();
     //modalInit(details);
@@ -196,6 +200,7 @@ function goAnotherImage(direction) {
         case "right": {shift = 1; break;}
         case "left": {shift = -1; break;}
     }
+    showLoading();
     var currentImageName = $("#fullImageModal").attr("imageName");
     var nextImage;
     currentProduct.imageNames.forEach(function(imageName, i) {
@@ -216,6 +221,18 @@ function goAnotherImage(direction) {
     });
 
     $("#fullImageModal").attr('src', productsPath + nextImage);
+    $("#fullImageModal")[0].onload = function () {
+        hideLoading();
+    }
+}
+
+
+function showLoading() {
+    $("#loading").removeClass("hidden");
+}
+
+function hideLoading() {
+    $("#loading").addClass("hidden");
 }
 
 function initSlider() {
